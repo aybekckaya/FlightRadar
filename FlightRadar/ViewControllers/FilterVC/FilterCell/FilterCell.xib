@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Museo300-Regular.otf">
+            <string>Museo300-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterCell" rowHeight="87" id="KGk-i7-Jjw" customClass="FilterCell" customModule="FlightRadar" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROY-l4-OeN">
+                        <rect key="frame" x="16" y="16" width="260" height="55"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="TSc-5X-jug"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Museo300-Regular" family="Museo" pointSize="19"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="6cA-tt-Sm2">
+                        <rect key="frame" x="289" y="36" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="ghL-H1-ejh"/>
+                            <constraint firstAttribute="width" constant="15" id="z80-C4-ZRf"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="6cA-tt-Sm2" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7wK-C1-r0B"/>
+                    <constraint firstItem="ROY-l4-OeN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="I3T-3i-pWD"/>
+                    <constraint firstAttribute="trailing" secondItem="6cA-tt-Sm2" secondAttribute="trailing" constant="16" id="afa-nO-Hq6"/>
+                    <constraint firstAttribute="bottom" secondItem="ROY-l4-OeN" secondAttribute="bottom" constant="16" id="fdD-SE-Rbd"/>
+                    <constraint firstItem="ROY-l4-OeN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="sS6-0h-dvA"/>
+                    <constraint firstItem="6cA-tt-Sm2" firstAttribute="leading" secondItem="ROY-l4-OeN" secondAttribute="trailing" constant="13" id="wIa-xS-qbr"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="imViewTick" destination="6cA-tt-Sm2" id="Gsi-Km-8sj"/>
+                <outlet property="lblTitle" destination="ROY-l4-OeN" id="hQx-Zn-yoi"/>
+            </connections>
+            <point key="canvasLocation" x="-110.14492753623189" y="92.745535714285708"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="tick" width="43" height="33"/>
+    </resources>
+</document>
