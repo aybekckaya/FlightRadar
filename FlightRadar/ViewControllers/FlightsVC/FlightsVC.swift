@@ -9,13 +9,14 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import CoreLocation
 
 class FlightsVC: UIViewController {
     override var prefersStatusBarHidden: Bool { return true }
     
     fileprivate let bag = DisposeBag()
     
-    fileprivate var mapView:FlightMap!
+    //fileprivate var mapView:FlightMap!
     fileprivate var presenter:FlightVCPresenter = FlightVCPresenter()
     
     fileprivate let btnFilter:UIButton = {
@@ -33,6 +34,7 @@ extension FlightsVC  {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+       
     }
     
     
@@ -47,11 +49,19 @@ extension FlightsVC  {
 extension FlightsVC {
     fileprivate func addListeners() {
         self.presenter.shouldReloadView.filter{ $0 == true }.subscribe(onNext: { _ in
-            self.mapView.addFlightAnnotations(arrFlightAnnotations: self.presenter.currentFlightAnnotations)
+            //let coord = self.mapView.convert(CLLocationCoordinate2D(latitude: 0, longitude: 0), toPointTo: self.view)
+           // print("Coordinate Found : \(coord)")
+            
+            self.presenter.mapView.addFlightAnnotations(arrFlightAnnotations: self.presenter.currentFlightAnnotations)
         }).disposed(by: self.bag)
         
         self.presenter.currentAlertView.filter{ $0 != nil }.subscribe(onNext: { alertModel in
             self.showAlertViewWithOK(title: alertModel!.title, message: alertModel!.descriptionText)
+        }).disposed(by: self.bag)
+        
+        self.presenter.mapView.currentRegion.filter{ $0 != nil }.subscribe(onNext: { region in
+            guard let region = region else { return }
+            self.presenter.requestFlightAnnotations(latitudeMin: region.latitudeMin, latitudeMax: region.latitudeMax, longitudeMin: region.longitudeMin, longitudeMax: region.longitudeMax)
         }).disposed(by: self.bag)
         
     }
@@ -62,16 +72,18 @@ extension FlightsVC {
 extension FlightsVC {
     fileprivate func setUpUI() {
         self.view.backgroundColor = UIColor.white
-        self.mapView = FlightMap(delegate: self)
-        self.view.addSubview(self.mapView)
-        self.mapView.translatesAutoresizingMaskIntoConstraints = false
-        self.mapView.fitIntoSuperView()
+        self.view.addSubview(self.presenter.mapView)
+        self.presenter.mapView.translatesAutoresizingMaskIntoConstraints = false
+        self.presenter.mapView.fitIntoSuperView()
+        self.presenter.setMapViewSize(size: self.view.frame.size)
         
         self.view.addSubview(self.btnFilter)
         self.btnFilter.activateViewConstraint(constraint: ViewConstraint(top: 16, leading: nil, trailing: -16, bottom: nil, height: 50, width: 50, centerX: nil, centerY: nil), constraintBased: true)
         self.btnFilter.layer.cornerRadius = 25
         self.btnFilter.layer.masksToBounds = true
         self.btnFilter.addTarget(self, action: #selector(filterOnTap), for: UIControl.Event.touchUpInside)
+        
+        
         
     }
 }
@@ -88,9 +100,4 @@ extension FlightsVC {
 }
 
 
-//MARK: FlightMap Delegate
-extension FlightsVC  : FlightMapDelegate {
-    func flightMapDidChangedRegion(map: FlightMap, latitudeMin: Double, latitudeMax: Double, longitudeMin: Double, longitudeMax: Double) {
-        self.presenter.requestFlightAnnotations(latitudeMin: latitudeMin, latitudeMax: latitudeMax, longitudeMin: longitudeMin, longitudeMax: longitudeMax)
-    }
-}
+

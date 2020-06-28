@@ -16,11 +16,14 @@ import SwiftyJSON
 class FlightVCPresenter: NSObject {
     //Private
     fileprivate let bag = DisposeBag()
+    fileprivate let gridController = GridController()
    
     fileprivate var timer:Timer?
-    
+    fileprivate var mapViewSize:CGSize = CGSize.zero
+   
     //Accessibles
     fileprivate(set) var currentFlightAnnotations:[FlightAnnotation] = []
+    fileprivate(set) var mapView:FlightMap = FlightMap()
     
     // Rx
     fileprivate(set) var shouldReloadView = BehaviorSubject<Bool>(value: false)
@@ -59,7 +62,7 @@ extension FlightVCPresenter {
         }).disposed(by: self.bag)
     }
     
-    func request(latitudeMin:Double , latitudeMax:Double , longitudeMin:Double , longitudeMax:Double) -> Observable<NetworkResponse> {
+    private func request(latitudeMin:Double , latitudeMax:Double , longitudeMin:Double , longitudeMax:Double) -> Observable<NetworkResponse> {
         let request = NetworkRequest(route: FlightNetwork.states(latitudeMin: latitudeMin, latitudeMax: latitudeMax, longitudeMin: longitudeMin, longitudeMax: longitudeMax), parameters: nil)
         return Network.request(request: request)
     }
@@ -72,16 +75,19 @@ extension FlightVCPresenter {
             guard let theFlight = Flight(json: json) else { return nil }
             let shouldShowInMap = FILTER.arrSelectedCountries.contains(theFlight.originCountry) || FILTER.arrSelectedCountries.count == 0
             theFlight.setShouldShowInMap(show: shouldShowInMap)
+            theFlight.setPositionInMap(pos: self.mapView.convert(CLLocationCoordinate2D(latitude: theFlight.latitude, longitude: theFlight.longitude), toPointTo: self.mapView))
             return theFlight
         }
         return Observable.of(flights)
     }
     
     fileprivate func flightsToFlightAnnotations(flights:[Flight])-> Observable<[FlightAnnotation]> {
-        return Observable.of(flights.compactMap { fl -> FlightAnnotation? in
-            guard fl.shouldShowInMap == true else { return nil }
-            return FlightAnnotation(flight: fl)
-        })
+        self.gridController.setFlights(flights: flights.filter{ $0.shouldShowInMap == true }, viewSize: self.mapView.frame.size)
+        let arrAnnotations = self.gridController.arrGrids.compactMap { grid -> FlightAnnotation? in
+            guard grid.arrFlights.count > 0 else { return nil }
+            return FlightAnnotation(arrFlights: grid.arrFlights, coordinate: grid.midCoordinate())
+        }
+        return Observable.of(arrAnnotations)
     }
     
    
@@ -89,12 +95,18 @@ extension FlightVCPresenter {
 
 //MARK: Public
 extension FlightVCPresenter {
+    func setMapViewSize(size:CGSize) {
+        self.mapViewSize = size 
+    }
     
     func getCountryList()->[Country] {
         var setCountryNames = Set<String>()
-        self.currentFlightAnnotations.compactMap{ $0.flight }.forEach { fl in
-            setCountryNames.insert(fl.originCountry)
+        self.currentFlightAnnotations.forEach { ann in
+            ann.arrFlights.forEach { fl in
+                setCountryNames.insert(fl.originCountry)
+            }
         }
+      
         return Array(setCountryNames).sorted().map { Country(name: $0) }
     }
 }

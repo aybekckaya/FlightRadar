@@ -30,6 +30,7 @@ class FlightMap: MKMapView {
     init() {
         super.init(frame: CGRect.zero)
         self.register(FlightAnnotationView.self, forAnnotationViewWithReuseIdentifier: "FlightAnnotationView")
+        self.delegate = self 
     }
     
     required init?(coder: NSCoder) {
@@ -62,6 +63,7 @@ extension FlightMap:MKMapViewDelegate {
 // MARK: Flight Annotation View Delegate
 extension FlightMap : FlightAnnotationViewDelegate {
     func flightAnnotationViewDidTapped(view: FlightAnnotationView) {
+        
         #warning("TODO: View Tapped Ekle !!! ")
         return
         self.controller.selectAnnotationViewWithIdentifier(identifier: view.currentAnnotation.icao24Identifier)

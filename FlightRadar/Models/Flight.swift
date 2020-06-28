@@ -23,6 +23,8 @@ class Flight: NSObject {
     fileprivate(set) var altitude:Double?
     fileprivate(set) var velocity:Double?
     
+    fileprivate(set) var position:CGPoint = .zero
+    
     
     init?(json:JSON) {
         super.init()
@@ -53,7 +55,18 @@ class Flight: NSObject {
         }
     }
     
+    
+    
+    
+}
+
+//MARK: Public
+extension Flight {
     func setShouldShowInMap(show:Bool) {
         self.shouldShowInMap = show
+    }
+    
+    func setPositionInMap(pos:CGPoint) {
+        self.position = pos 
     }
 }

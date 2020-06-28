@@ -11,6 +11,7 @@ import MapKit
 
 //MARK: FlightAnnotationViewState
 enum FlightAnnotationState {
+    case unknown
     case flying
     case onTheGround
     case selected
@@ -22,9 +23,10 @@ class FlightAnnotation: NSObject,MKAnnotation  {
     fileprivate(set) var rotationDegree:Double = 0
     fileprivate(set) var icao24Identifier:String = ""
     fileprivate(set) var currentState:FlightAnnotationState = .flying
-    fileprivate(set) var flight:Flight!
+    //fileprivate(set) var flight:Flight!
     fileprivate(set) var arrFlights:[Flight] = []
     
+    /*
     init(flight:Flight) {
         self.coordinate = CLLocationCoordinate2D(latitude: flight.latitude, longitude: flight.longitude)
         super.init()
@@ -33,19 +35,26 @@ class FlightAnnotation: NSObject,MKAnnotation  {
         self.icao24Identifier = self.flight.icao24
         self.rotationDegree = self.flight.degree
     }
-    
+    */
     init(arrFlights:[Flight] , coordinate:CLLocationCoordinate2D) {
         self.coordinate = coordinate
         super.init()
         self.arrFlights = arrFlights
+        if arrFlights.count == 1 {
+            let fl = arrFlights.first!
+            self.currentState = self.getState()
+            self.icao24Identifier = fl.icao24
+            self.rotationDegree = fl.degree
+        }
     }
     
     
     fileprivate func getState()->FlightAnnotationState {
-        if self.flight.isOnGround == true {
+        guard self.arrFlights.count == 1 else { return .unknown }
+        if self.arrFlights.first!.isOnGround == true {
             return .onTheGround
         }
-        else if self.flight.isOnGround == false {
+        else if self.arrFlights.first!.isOnGround == false {
             return .flying
         }
         return .flying

@@ -19,9 +19,26 @@ protocol FlightAnnotationViewDelegate {
 //MARK: Flight Annotation View
 class FlightAnnotationView: MKAnnotationView {
     
+    fileprivate enum FlightAnnotationViewType {
+        case plane
+        case grouped
+    }
+    
+    fileprivate var type:FlightAnnotationViewType = .plane
     fileprivate var delegate:FlightAnnotationViewDelegate!
+    fileprivate var viewCall:FlightCallView = FlightCallView()
+    
     fileprivate(set) var currentState:FlightAnnotationState = .flying
     fileprivate(set) var currentAnnotation:FlightAnnotation!
+   
+    fileprivate let lblCount:UILabel = {
+        let lbl = UILabel(frame: CGRect.zero)
+        lbl.translatesAutoresizingMaskIntoConstraints = true
+        lbl.font = Font.Museo700.font(size: 12)
+        lbl.textAlignment = .center
+        lbl.textColor = .white
+        return lbl
+    }()
     
     fileprivate let imViewPlane:UIImageView = {
         let img = UIImageView(frame: .zero)
@@ -30,7 +47,7 @@ class FlightAnnotationView: MKAnnotationView {
         return img
     }()
     
-    fileprivate var viewCall:FlightCallView = FlightCallView()
+
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -48,6 +65,7 @@ class FlightAnnotationView: MKAnnotationView {
 extension FlightAnnotationView {
     func setAnnotation(annotation:FlightAnnotation) {
         self.currentAnnotation = annotation
+        self.type = self.currentAnnotation.arrFlights.count == 1 ? .plane : .grouped
         self.updateUI()
     }
     
@@ -76,17 +94,36 @@ extension FlightAnnotationView {
     
     fileprivate func updateUI() {
         self.viewCall.removeFromSuperview()
-        self.setRotationDegree(degree: self.currentAnnotation.rotationDegree)
-        switch self.currentState {
-            case .flying:
-                self.imViewPlane.image = UIImage(named: "Plane")
-            case .onTheGround:
-                self.imViewPlane.image = UIImage(named: "PlaneGround")
-            case .selected:
-                self.imViewPlane.image = UIImage(named: "PlaneSelected")!
-                self.addCallView()
+        self.frame = self.type == FlightAnnotationViewType.plane ? CGRect(x: 0, y: 0, width: 64, height: 64) : CGRect(x: 0, y: 0, width: 24, height: 24)
+        switch self.type {
+        
+        case .plane:
+            self.setRotationDegree(degree: self.currentAnnotation.rotationDegree)
+            switch self.currentState {
+                case .flying:
+                    self.imViewPlane.image = UIImage(named: "Plane")
+                case .onTheGround:
+                    self.imViewPlane.image = UIImage(named: "PlaneGround")
+                case .selected:
+                    self.imViewPlane.image = UIImage(named: "PlaneSelected")!
+                    self.addCallView()
+            case .unknown:
+                break
+            }
+            self.lblCount.removeFromSuperview()
+            self.backgroundColor = UIColor.clear
+            self.layer.cornerRadius = 0
+            self.layer.masksToBounds = true
+        
+        case .grouped:
+            self.lblCount.frame = CGRect(origin: CGPoint.zero, size: self.frame.size)
+            self.imViewPlane.removeFromSuperview()
+            self.backgroundColor = UIColor.red
+            self.layer.cornerRadius = self.frame.size.width / 2
+            self.layer.masksToBounds = true
+            self.lblCount.text = "\(self.currentAnnotation.arrFlights.count)"
         }
- 
+    
     }
     
     private func addCallView() {
@@ -99,11 +136,14 @@ extension FlightAnnotationView {
     }
     
     private func setUpUI() {
-        self.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
+        self.frame = self.type == FlightAnnotationViewType.plane ? CGRect(x: 0, y: 0, width: 64, height: 64) : CGRect(x: 0, y: 0, width: 24, height: 24)
         self.backgroundColor = UIColor.clear
         self.addSubview(self.imViewPlane)
         self.imViewPlane.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         self.imViewPlane.center = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
+        
+        self.addSubview(self.lblCount)
+        self.lblCount.frame = CGRect(origin: CGPoint.zero, size: self.frame.size)
         
         let tapGestureImView = UITapGestureRecognizer(target: self, action: #selector(imViewPlaneDidTapped))
         tapGestureImView.numberOfTouchesRequired = 1
