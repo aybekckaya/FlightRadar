@@ -9,23 +9,26 @@
 import UIKit
 import MapKit
 import CoreLocation
+import RxCocoa
+import RxSwift
 
 //MARK: Flight Map Delegate
+/*
 protocol FlightMapDelegate {
     func flightMapDidChangedRegion(map:FlightMap , latitudeMin:Double , latitudeMax:Double , longitudeMin:Double , longitudeMax:Double)
 }
+*/
 
 
 //MARK: FlightMap {Class}
 class FlightMap: MKMapView {
-    fileprivate var mapDelegate:FlightMapDelegate!
+    fileprivate let bag = DisposeBag()
     fileprivate let controller:FlightMapController = FlightMapController()
     
-    init(delegate:FlightMapDelegate) {
+    fileprivate(set) var currentRegion = BehaviorSubject<FlightMapRegion?>(value: nil)
+    
+    init() {
         super.init(frame: CGRect.zero)
-        self.delegate = self
-        self.mapDelegate = delegate
-        
         self.register(FlightAnnotationView.self, forAnnotationViewWithReuseIdentifier: "FlightAnnotationView")
     }
     
@@ -50,8 +53,8 @@ extension FlightMap:MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         self.controller.updateMapCoordinates(mapView: self)
         let boundaries:FlightMapCoordinates = self.controller.currentCoordinates
-        self.mapDelegate.flightMapDidChangedRegion(map: self, latitudeMin: boundaries.latitudeMin, latitudeMax: boundaries.latitudeMax, longitudeMin: boundaries.longitudeMin, longitudeMax: boundaries.longitudeMax)
-       
+        self.currentRegion.onNext(FlightMapRegion(latiMin: boundaries.latitudeMin, latiMax: boundaries.latitudeMax, longiMin: boundaries.longitudeMin, longiMax: boundaries.longitudeMax))
+        self.currentRegion.onNext(nil)
     }
 }
 
@@ -59,6 +62,8 @@ extension FlightMap:MKMapViewDelegate {
 // MARK: Flight Annotation View Delegate
 extension FlightMap : FlightAnnotationViewDelegate {
     func flightAnnotationViewDidTapped(view: FlightAnnotationView) {
+        #warning("TODO: View Tapped Ekle !!! ")
+        return
         self.controller.selectAnnotationViewWithIdentifier(identifier: view.currentAnnotation.icao24Identifier)
         self.addFlightAnnotations(arrFlightAnnotations: self.annotations.compactMap({ ann -> FlightAnnotation? in
             return ann as? FlightAnnotation

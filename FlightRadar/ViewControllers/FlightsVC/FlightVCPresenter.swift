@@ -12,105 +12,95 @@ import RxSwift
 import RxCocoa
 import SwiftyJSON
 
-//MARK: Flight VC Presenter Delegate 
-protocol FlightVCPresenterDelegate {
-    func flightVCPresenterShouldShowErrorAlert(presenter:FlightVCPresenter , error:NSError)
-    func flightVCPresenterShouldReloadItems(presenter:FlightVCPresenter , items:[Flight])
-}
-
-
 //MARK: FlightVC Presenter {Class}
 class FlightVCPresenter: NSObject {
+    //Private
     fileprivate let bag = DisposeBag()
-    fileprivate(set) var currentFlights:[Flight] = []
-    fileprivate var delegate:FlightVCPresenterDelegate!
+   
     fileprivate var timer:Timer?
+    
+    //Accessibles
+    fileprivate(set) var currentFlightAnnotations:[FlightAnnotation] = []
+    
+    // Rx
+    fileprivate(set) var shouldReloadView = BehaviorSubject<Bool>(value: false)
+    fileprivate(set) var currentAlertView = BehaviorSubject<FlightAlertModel?>(value: nil)
 
-    init(delegate:FlightVCPresenterDelegate) {
+    override init() {
         super.init()
-        self.delegate = delegate
     }
 }
 
 //MARK: Request
 extension FlightVCPresenter {
-    func request(latitudeMin:Double , latitudeMax:Double , longitudeMin:Double , longitudeMax:Double) {
+    func requestFlightAnnotations(latitudeMin:Double , latitudeMax:Double , longitudeMin:Double , longitudeMax:Double) {
         timer?.invalidate()
         timer = nil
-        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false, block: { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: Configuration.flightReloadTimeInterval, repeats: false, block: { [weak self] _ in
             guard let strongSelf = self else { return }
-            strongSelf.request(latitudeMin: latitudeMin, latitudeMax: latitudeMax, longitudeMin: longitudeMin, longitudeMax: longitudeMax)
+            strongSelf.requestFlightAnnotations(latitudeMin: latitudeMin, latitudeMax: latitudeMax, longitudeMin: longitudeMin, longitudeMax: longitudeMax)
         })
-        let request = NetworkRequest(route: FlightNetwork.states(latitudeMin: latitudeMin, latitudeMax: latitudeMax, longitudeMin: longitudeMin, longitudeMax: longitudeMax), parameters: nil)
         
-        Network.request(request: request).flatMapLatest { response -> Observable<Bool> in
+        self.request(latitudeMin: latitudeMin, latitudeMax: latitudeMax, longitudeMin: longitudeMin, longitudeMax: longitudeMax).flatMapLatest {[weak self] response -> Observable<[Flight]> in
+            guard let strongSelf = self else { return Observable.of([]) }
             if let error = response.error {
-                self.delegate.flightVCPresenterShouldShowErrorAlert(presenter: self, error: error)
-                return Observable.of(true)
+                let model = FlightAlertModel(title: "Error", descriptionText: error.localizedDescription)
+                strongSelf.currentAlertView.onNext(model)
+                strongSelf.currentAlertView.onNext(nil)
+                return Observable.of([])
             }
-            
-            let flights = response.result["states"].compactMap { ( _ , json) -> Flight? in
-                guard let theFlight = Flight(json: json) else { return nil }
-                let shouldShowInMap = FILTER.arrSelectedCountries.contains(theFlight.originCountry) || FILTER.arrSelectedCountries.count == 0
-                theFlight.setShouldShowInMap(show: shouldShowInMap)
-                return theFlight
-            }
-            
-            self.currentFlights = flights
-            self.delegate.flightVCPresenterShouldReloadItems(presenter: self, items: self.currentFlights)
-            
-            return Observable.of(true)
-        }.subscribe(onNext: { _ in
-            
+            return strongSelf.convertResponseDataToFlights(data: response.result)
+        }.flatMapLatest { arrFlights -> Observable<[FlightAnnotation]> in
+            return self.flightsToFlightAnnotations(flights: arrFlights)
+        }.subscribe(onNext: { annotations in
+            self.currentFlightAnnotations = annotations
+            self.shouldReloadView.onNext(true)
+            self.shouldReloadView.onNext(false)
         }).disposed(by: self.bag)
+    }
     
+    func request(latitudeMin:Double , latitudeMax:Double , longitudeMin:Double , longitudeMax:Double) -> Observable<NetworkResponse> {
+        let request = NetworkRequest(route: FlightNetwork.states(latitudeMin: latitudeMin, latitudeMax: latitudeMax, longitudeMin: longitudeMin, longitudeMax: longitudeMax), parameters: nil)
+        return Network.request(request: request)
     }
 }
 
 //MARK: Converter
 extension FlightVCPresenter {
-    func flightsToFlightAnnotations(flights:[Flight])->[FlightAnnotation] {
-        return flights.compactMap { fl -> FlightAnnotation? in
-            guard fl.shouldShowInMap == true else { return nil }
-            let state:FlightAnnotationState = fl.isOnGround == true ? .onTheGround : .flying
-            return FlightAnnotation(coordinate: CLLocationCoordinate2D(latitude: fl.latitude, longitude: fl.longitude), rotationDegree: fl.degree, icao24: fl.icao24, state: state)
+    fileprivate func convertResponseDataToFlights(data:JSON)->Observable<[Flight]> {
+        let flights = data["states"].compactMap { ( _ , json) -> Flight? in
+            guard let theFlight = Flight(json: json) else { return nil }
+            let shouldShowInMap = FILTER.arrSelectedCountries.contains(theFlight.originCountry) || FILTER.arrSelectedCountries.count == 0
+            theFlight.setShouldShowInMap(show: shouldShowInMap)
+            return theFlight
         }
+        return Observable.of(flights)
     }
     
-    func countriesFromFlights(flights:[Flight]) -> [Country] {
+    fileprivate func flightsToFlightAnnotations(flights:[Flight])-> Observable<[FlightAnnotation]> {
+        return Observable.of(flights.compactMap { fl -> FlightAnnotation? in
+            guard fl.shouldShowInMap == true else { return nil }
+            return FlightAnnotation(flight: fl)
+        })
+    }
+    
+   
+}
+
+//MARK: Public
+extension FlightVCPresenter {
+    
+    func getCountryList()->[Country] {
         var setCountryNames = Set<String>()
-        flights.forEach { fl in
+        self.currentFlightAnnotations.compactMap{ $0.flight }.forEach { fl in
             setCountryNames.insert(fl.originCountry)
         }
-        let flightCountryNames:[String] = Array(setCountryNames).sorted()
-        
-        return flightCountryNames.map { str -> Country in
-            return Country(name: str)
-        }
+        return Array(setCountryNames).sorted().map { Country(name: $0) }
     }
 }
 
 
 //MARK: Mock
-class FlightVCPresenterMockDelegate:FlightVCPresenterDelegate {
-    func flightVCPresenterShouldShowErrorAlert(presenter: FlightVCPresenter, error: NSError) {
-        
-    }
-    
-    func flightVCPresenterShouldReloadItems(presenter: FlightVCPresenter, items: [Flight]) {
-        
-    }
-    
-    
-}
-
-
 class FlightVCPresenterMock:FlightVCPresenter {
-    func flightsToFlightAnnotationsMock(flights:[Flight])->[FlightAnnotation] {
-        return super.flightsToFlightAnnotations(flights: flights)
-    }
     
-    func countriesFromFlightsMock(flights:[Flight]) -> [Country] {
-        return super.countriesFromFlights(flights: flights)
-    }
 }

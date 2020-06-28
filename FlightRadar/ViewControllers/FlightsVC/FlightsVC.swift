@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class FlightsVC: UIViewController {
     override var prefersStatusBarHidden: Bool { return true }
     
+    fileprivate let bag = DisposeBag()
+    
     fileprivate var mapView:FlightMap!
-    fileprivate var presenter:FlightVCPresenter!
+    fileprivate var presenter:FlightVCPresenter = FlightVCPresenter()
     
     fileprivate let btnFilter:UIButton = {
         let btn = UIButton(frame: .zero)
@@ -34,24 +38,22 @@ extension FlightsVC  {
     
     override func viewDidLoad() {
            super.viewDidLoad()
-           self.setUpPresenter()
            self.setUpUI()
+           self.addListeners()
        }
 }
 
-//MARK: FlightVC Presenter
-extension FlightsVC : FlightVCPresenterDelegate {
-    fileprivate func setUpPresenter() {
-        self.presenter = FlightVCPresenter(delegate: self)
-    }
-    
-    func flightVCPresenterShouldShowErrorAlert(presenter: FlightVCPresenter, error: NSError) {
-        self.showErrorAlertView(error: error)
-    }
-    
-    func flightVCPresenterShouldReloadItems(presenter: FlightVCPresenter, items: [Flight]) {
-        let annotations = self.presenter.flightsToFlightAnnotations(flights: items)
-        self.mapView.addFlightAnnotations(arrFlightAnnotations: annotations)
+//MARK: Listeners
+extension FlightsVC {
+    fileprivate func addListeners() {
+        self.presenter.shouldReloadView.filter{ $0 == true }.subscribe(onNext: { _ in
+            self.mapView.addFlightAnnotations(arrFlightAnnotations: self.presenter.currentFlightAnnotations)
+        }).disposed(by: self.bag)
+        
+        self.presenter.currentAlertView.filter{ $0 != nil }.subscribe(onNext: { alertModel in
+            self.showAlertViewWithOK(title: alertModel!.title, message: alertModel!.descriptionText)
+        }).disposed(by: self.bag)
+        
     }
 }
 
@@ -77,7 +79,7 @@ extension FlightsVC {
 //MARK: Actions
 extension FlightsVC {
     @objc private func filterOnTap() {
-        let countries = self.presenter.countriesFromFlights(flights: self.presenter.currentFlights)
+        let countries = self.presenter.getCountryList()
         let vc:FilterVC = FilterVC()
         vc.setDependency(arrCountries: countries)
         let navCon = UINavigationController(rootViewController: vc)
@@ -89,6 +91,6 @@ extension FlightsVC {
 //MARK: FlightMap Delegate
 extension FlightsVC  : FlightMapDelegate {
     func flightMapDidChangedRegion(map: FlightMap, latitudeMin: Double, latitudeMax: Double, longitudeMin: Double, longitudeMax: Double) {
-        self.presenter.request(latitudeMin: latitudeMin, latitudeMax: latitudeMax, longitudeMin: longitudeMin, longitudeMax: longitudeMax)
+        self.presenter.requestFlightAnnotations(latitudeMin: latitudeMin, latitudeMax: latitudeMax, longitudeMin: longitudeMin, longitudeMax: longitudeMax)
     }
 }

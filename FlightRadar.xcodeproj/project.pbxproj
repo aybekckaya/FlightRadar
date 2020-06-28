@@ -16,6 +16,12 @@
 		A3418E03248B06B600406B8A /* FlightCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3418E02248B06B600406B8A /* FlightCallView.swift */; };
 		A3418E04248B06B600406B8A /* FlightCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3418E02248B06B600406B8A /* FlightCallView.swift */; };
 		A3418E05248B06B600406B8A /* FlightCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3418E02248B06B600406B8A /* FlightCallView.swift */; };
+		A34D0AF124A8A65200A17FC4 /* FlightAlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D0AF024A8A65200A17FC4 /* FlightAlertModel.swift */; };
+		A34D0AF224A8A65200A17FC4 /* FlightAlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D0AF024A8A65200A17FC4 /* FlightAlertModel.swift */; };
+		A34D0AF324A8A65200A17FC4 /* FlightAlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D0AF024A8A65200A17FC4 /* FlightAlertModel.swift */; };
+		A34D0AF524A8B10300A17FC4 /* FlightMapRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D0AF424A8B10300A17FC4 /* FlightMapRegion.swift */; };
+		A34D0AF624A8B10300A17FC4 /* FlightMapRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D0AF424A8B10300A17FC4 /* FlightMapRegion.swift */; };
+		A34D0AF724A8B10300A17FC4 /* FlightMapRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34D0AF424A8B10300A17FC4 /* FlightMapRegion.swift */; };
 		A38FCCC2248B2A5A00829988 /* FlightMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38FCCC1248B2A5A00829988 /* FlightMapController.swift */; };
 		A38FCCC3248B2A5A00829988 /* FlightMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38FCCC1248B2A5A00829988 /* FlightMapController.swift */; };
 		A38FCCC4248B2A5A00829988 /* FlightMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38FCCC1248B2A5A00829988 /* FlightMapController.swift */; };
@@ -132,6 +138,8 @@
 		5AAB963CBC5ABF6D2C997B06 /* Pods-FlightRadar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightRadar.release.xcconfig"; path = "Target Support Files/Pods-FlightRadar/Pods-FlightRadar.release.xcconfig"; sourceTree = "<group>"; };
 		A3418DFD248B00B300406B8A /* UINib+loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINib+loading.swift"; sourceTree = "<group>"; };
 		A3418E02248B06B600406B8A /* FlightCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightCallView.swift; sourceTree = "<group>"; };
+		A34D0AF024A8A65200A17FC4 /* FlightAlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightAlertModel.swift; sourceTree = "<group>"; };
+		A34D0AF424A8B10300A17FC4 /* FlightMapRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMapRegion.swift; sourceTree = "<group>"; };
 		A38FCCC1248B2A5A00829988 /* FlightMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMapController.swift; sourceTree = "<group>"; };
 		A38FCCC5248B2B6F00829988 /* FlightMapCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMapCoordinates.swift; sourceTree = "<group>"; };
 		A38FCCC9248BBFDB00829988 /* FlightCreationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightCreationTests.swift; sourceTree = "<group>"; };
@@ -362,6 +370,8 @@
 				A3D7AC872482738200BE96BB /* FlightNetwork.swift */,
 				A3D7AC8B24827FC300BE96BB /* Flight.swift */,
 				A3D7AC9724829D6200BE96BB /* FlightAnnotation.swift */,
+				A34D0AF024A8A65200A17FC4 /* FlightAlertModel.swift */,
+				A34D0AF424A8B10300A17FC4 /* FlightMapRegion.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -681,7 +691,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A34D0AF124A8A65200A17FC4 /* FlightAlertModel.swift in Sources */,
 				A3D7AC3A2481531F00BE96BB /* FilterVC.swift in Sources */,
+				A34D0AF524A8B10300A17FC4 /* FlightMapRegion.swift in Sources */,
 				A3D7AC9824829D6200BE96BB /* FlightAnnotation.swift in Sources */,
 				A3D7AC7324825CE600BE96BB /* Filter.swift in Sources */,
 				A3D7AC942482881C00BE96BB /* UIViewController+AlertView.swift in Sources */,
@@ -715,6 +727,7 @@
 				A3D7AC8524826D0E00BE96BB /* Network.swift in Sources */,
 				A3D7AC952482881C00BE96BB /* UIViewController+AlertView.swift in Sources */,
 				A38FCCCA248BBFDB00829988 /* FlightCreationTests.swift in Sources */,
+				A34D0AF224A8A65200A17FC4 /* FlightAlertModel.swift in Sources */,
 				A3D7AC91248285F000BE96BB /* FlightVCPresenter.swift in Sources */,
 				A3D7AC492481574600BE96BB /* FilterCell.swift in Sources */,
 				A3D7AC3F248153E100BE96BB /* Table.swift in Sources */,
@@ -723,6 +736,7 @@
 				A3D7AC9D2482A15E00BE96BB /* FlightAnnotationView.swift in Sources */,
 				A3D7AC7824825D8F00BE96BB /* FlightMap.swift in Sources */,
 				A3D7AC3B2481531F00BE96BB /* FilterVC.swift in Sources */,
+				A34D0AF624A8B10300A17FC4 /* FlightMapRegion.swift in Sources */,
 				A3D7AC6B24818CB000BE96BB /* Configuration.swift in Sources */,
 				A3D7AC9924829D6200BE96BB /* FlightAnnotation.swift in Sources */,
 				A38FCCC3248B2A5A00829988 /* FlightMapController.swift in Sources */,
@@ -745,9 +759,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A34D0AF324A8A65200A17FC4 /* FlightAlertModel.swift in Sources */,
 				A3D7AC8624826D0E00BE96BB /* Network.swift in Sources */,
 				A3D7AC962482881C00BE96BB /* UIViewController+AlertView.swift in Sources */,
 				A3D7AC92248285F000BE96BB /* FlightVCPresenter.swift in Sources */,
+				A34D0AF724A8B10300A17FC4 /* FlightMapRegion.swift in Sources */,
 				A3D7AC4A2481574600BE96BB /* FilterCell.swift in Sources */,
 				A3D7AC40248153E100BE96BB /* Table.swift in Sources */,
 				A3418E05248B06B600406B8A /* FlightCallView.swift in Sources */,

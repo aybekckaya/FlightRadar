@@ -22,12 +22,32 @@ class FlightAnnotation: NSObject,MKAnnotation  {
     fileprivate(set) var rotationDegree:Double = 0
     fileprivate(set) var icao24Identifier:String = ""
     fileprivate(set) var currentState:FlightAnnotationState = .flying
+    fileprivate(set) var flight:Flight!
+    fileprivate(set) var arrFlights:[Flight] = []
     
-    init(coordinate:CLLocationCoordinate2D , rotationDegree:Double , icao24:String , state:FlightAnnotationState) {
+    init(flight:Flight) {
+        self.coordinate = CLLocationCoordinate2D(latitude: flight.latitude, longitude: flight.longitude)
+        super.init()
+        self.flight = flight
+        self.currentState = self.getState()
+        self.icao24Identifier = self.flight.icao24
+        self.rotationDegree = self.flight.degree
+    }
+    
+    init(arrFlights:[Flight] , coordinate:CLLocationCoordinate2D) {
         self.coordinate = coordinate
         super.init()
-        self.currentState = state 
-        self.rotationDegree = rotationDegree
-        self.icao24Identifier = icao24
+        self.arrFlights = arrFlights
+    }
+    
+    
+    fileprivate func getState()->FlightAnnotationState {
+        if self.flight.isOnGround == true {
+            return .onTheGround
+        }
+        else if self.flight.isOnGround == false {
+            return .flying
+        }
+        return .flying
     }
 }

@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+struct Configuration {
+    static let flightReloadTimeInterval:TimeInterval = 5.0
+}
+
+
 // MARK: Font
 enum Font:String {
     case Museo100 = "Museo100-Regular"

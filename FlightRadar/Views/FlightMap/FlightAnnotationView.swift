@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 
+#warning("TODO: Gruplamayı burada göster. İçine numara alsın grid için")
+
 //MARK: FlightAnnotationViewDelegate
 protocol FlightAnnotationViewDelegate {
     func flightAnnotationViewDidTapped(view:FlightAnnotationView)
@@ -42,7 +44,7 @@ class FlightAnnotationView: MKAnnotationView {
     
 }
 
-//MARK: Setters
+//MARK: Public
 extension FlightAnnotationView {
     func setAnnotation(annotation:FlightAnnotation) {
         self.currentAnnotation = annotation
