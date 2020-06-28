@@ -66,6 +66,8 @@ extension FlightAnnotationView {
     func setAnnotation(annotation:FlightAnnotation) {
         self.currentAnnotation = annotation
         self.type = self.currentAnnotation.arrFlights.count == 1 ? .plane : .grouped
+       // self.type = .grouped
+      
         self.updateUI()
     }
     
@@ -110,14 +112,16 @@ extension FlightAnnotationView {
             case .unknown:
                 break
             }
-            self.lblCount.removeFromSuperview()
+            self.lblCount.alpha = 0
+            self.imViewPlane.alpha = 1
             self.backgroundColor = UIColor.clear
             self.layer.cornerRadius = 0
             self.layer.masksToBounds = true
         
         case .grouped:
             self.lblCount.frame = CGRect(origin: CGPoint.zero, size: self.frame.size)
-            self.imViewPlane.removeFromSuperview()
+            self.lblCount.alpha = 1
+            self.imViewPlane.alpha = 0
             self.backgroundColor = UIColor.red
             self.layer.cornerRadius = self.frame.size.width / 2
             self.layer.masksToBounds = true
