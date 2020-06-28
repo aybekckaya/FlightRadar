@@ -143,7 +143,7 @@
 		A3418E02248B06B600406B8A /* FlightCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightCallView.swift; sourceTree = "<group>"; };
 		A34D0AF024A8A65200A17FC4 /* FlightAlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightAlertModel.swift; sourceTree = "<group>"; };
 		A34D0AF424A8B10300A17FC4 /* FlightMapRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMapRegion.swift; sourceTree = "<group>"; };
-		A34D0AF824A8B69400A17FC4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		A34D0AF824A8B69400A17FC4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A38FCCC1248B2A5A00829988 /* FlightMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMapController.swift; sourceTree = "<group>"; };
 		A38FCCC5248B2B6F00829988 /* FlightMapCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMapCoordinates.swift; sourceTree = "<group>"; };
 		A38FCCC9248BBFDB00829988 /* FlightCreationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightCreationTests.swift; sourceTree = "<group>"; };
@@ -249,6 +249,7 @@
 		A3D7ABEC24813E7000BE96BB = {
 			isa = PBXGroup;
 			children = (
+				A34D0AF824A8B69400A17FC4 /* README.md */,
 				A3D7ABF724813E7000BE96BB /* FlightRadar */,
 				A3D7AC0E24813E7400BE96BB /* FlightRadarTests */,
 				A3D7AC1924813E7400BE96BB /* FlightRadarUITests */,
@@ -271,7 +272,6 @@
 		A3D7ABF724813E7000BE96BB /* FlightRadar */ = {
 			isa = PBXGroup;
 			children = (
-				A34D0AF824A8B69400A17FC4 /* README.md */,
 				A3D7AC7A24826C8A00BE96BB /* Helpers */,
 				A3D7AC6824818C3300BE96BB /* Application */,
 				A3D7AC53248188C000BE96BB /* Fonts */,
