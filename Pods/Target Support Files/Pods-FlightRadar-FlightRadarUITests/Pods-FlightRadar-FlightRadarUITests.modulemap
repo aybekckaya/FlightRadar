@@ -1,0 +1,6 @@
+framework module Pods_FlightRadar_FlightRadarUITests {
+  umbrella header "Pods-FlightRadar-FlightRadarUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

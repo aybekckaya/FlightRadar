@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import RxCocoa
+import RxSwift
+import SwiftyJSON
 
 // MARK: Network Route - Protocol
 protocol NetworkRoute {
@@ -97,56 +100,57 @@ class Network {
 
 //MARK: Request
 extension Network {
-    static func request(request:NetworkRequest)->Promise<NetworkResponse> {
-        let networkPromise = Promise<NetworkResponse>()
+    static func request(request:NetworkRequest)->Observable<NetworkResponse> {
         let nw = Network()
         nw.request = request
         guard let req = nw.urlRequest() else {
             let res = NetworkResponse(result: JSON.null, error: NetworkError.urlRequestCannotBeFormed.error)
-            networkPromise.resolve(with: res)
-            return networkPromise
+            return Observable.of(res)
         }
         
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
-            nw.dataTask = nw.session.dataTask(with: req, completionHandler: { (data, response, error) in
-              
-                if let error = error {
-                    Network.resolvePromiseWithError(error: error, promise: networkPromise)
-                    return
-                }
-                
-                guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-                    Network.resolvePromiseWithError(error: NetworkError.responseCodeIsNotSatisfied.error, promise: networkPromise)
-                    return
-                }
-                
-                guard let response = response , let mime = response.mimeType, mime == "application/json" else {
-                    Network.resolvePromiseWithError(error: NetworkError.mimeTypeIsNotSatisfied.error, promise: networkPromise)
-                    return
-                }
-                
-                guard let data = data else {
-                    Network.resolvePromiseWithError(error: NetworkError.responseDataIsNil.error, promise: networkPromise)
-                    return
-                }
-                
-                do {
-                    let json = try JSON(data: data)
-                    DispatchQueue.main.async { networkPromise.resolve(with: NetworkResponse(result: json, error: nil)) }
-                } catch let err {
-                    Network.resolvePromiseWithError(error: err, promise: networkPromise)
-                }
-                
-            })
-            nw.dataTask?.resume()
-         }
-        return networkPromise
+    
+        return Observable.create { observer -> Disposable in
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
+               
+                nw.dataTask = nw.session.dataTask(with: req, completionHandler: { (data, response, error) in
+                    
+                    if let error = error {
+                        Network.resolveObservableWithError(error: error, obs: observer)
+                        return
+                    }
+                    
+                    guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                        Network.resolveObservableWithError(error: NetworkError.responseCodeIsNotSatisfied.error, obs: observer)
+                        return
+                    }
+                    
+                    guard let response = response , let mime = response.mimeType, mime == "application/json" else {
+                        Network.resolveObservableWithError(error: NetworkError.mimeTypeIsNotSatisfied.error, obs: observer)
+                        return
+                    }
+                    
+                    guard let data = data else {
+                        Network.resolveObservableWithError(error: NetworkError.responseDataIsNil.error, obs: observer)
+                        return
+                    }
+                    
+                    do {
+                        let json = try JSON(data: data)
+                        DispatchQueue.main.async { observer.onNext(NetworkResponse(result: json, error: nil)) }
+                    } catch let err {
+                        Network.resolveObservableWithError(error: err, obs: observer)
+                    }
+                })
+               nw.dataTask?.resume()
+            }
+            return Disposables.create()
+        }
     }
     
-    private static func resolvePromiseWithError(error:Error , promise:Promise<NetworkResponse>) {
+    private static func resolveObservableWithError(error:Error , obs:AnyObserver<NetworkResponse>) {
         DispatchQueue.main.async {
             let res = NetworkResponse(result: JSON.null, error: error as? NSError)
-            promise.resolve(with: res)
+            obs.onNext(res)
         }
     }
 }

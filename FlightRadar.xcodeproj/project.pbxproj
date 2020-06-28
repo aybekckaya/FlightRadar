@@ -3,10 +3,28 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06D8EA40E585B7F40159D4E6 /* Pods_FlightRadarTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16784FAB5013EA0673ED2BBB /* Pods_FlightRadarTests.framework */; };
+		5CF52A93BA92837AA9918A96 /* Pods_FlightRadar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C97444A77CAFBA573130FC2 /* Pods_FlightRadar.framework */; };
+		95027D5FA0BB9CC87917A73A /* Pods_FlightRadar_FlightRadarUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D679B30BDCA258B5CD132206 /* Pods_FlightRadar_FlightRadarUITests.framework */; };
+		A3418DFE248B00B300406B8A /* UINib+loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3418DFD248B00B300406B8A /* UINib+loading.swift */; };
+		A3418DFF248B00B300406B8A /* UINib+loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3418DFD248B00B300406B8A /* UINib+loading.swift */; };
+		A3418E00248B00B300406B8A /* UINib+loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3418DFD248B00B300406B8A /* UINib+loading.swift */; };
+		A3418E03248B06B600406B8A /* FlightCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3418E02248B06B600406B8A /* FlightCallView.swift */; };
+		A3418E04248B06B600406B8A /* FlightCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3418E02248B06B600406B8A /* FlightCallView.swift */; };
+		A3418E05248B06B600406B8A /* FlightCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3418E02248B06B600406B8A /* FlightCallView.swift */; };
+		A38FCCC2248B2A5A00829988 /* FlightMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38FCCC1248B2A5A00829988 /* FlightMapController.swift */; };
+		A38FCCC3248B2A5A00829988 /* FlightMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38FCCC1248B2A5A00829988 /* FlightMapController.swift */; };
+		A38FCCC4248B2A5A00829988 /* FlightMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38FCCC1248B2A5A00829988 /* FlightMapController.swift */; };
+		A38FCCC6248B2B6F00829988 /* FlightMapCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38FCCC5248B2B6F00829988 /* FlightMapCoordinates.swift */; };
+		A38FCCC7248B2B6F00829988 /* FlightMapCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38FCCC5248B2B6F00829988 /* FlightMapCoordinates.swift */; };
+		A38FCCC8248B2B6F00829988 /* FlightMapCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38FCCC5248B2B6F00829988 /* FlightMapCoordinates.swift */; };
+		A38FCCCA248BBFDB00829988 /* FlightCreationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38FCCC9248BBFDB00829988 /* FlightCreationTests.swift */; };
+		A38FCCCC248BC11600829988 /* FlightMapControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38FCCCB248BC11600829988 /* FlightMapControllerTests.swift */; };
+		A38FCCCE248BD3CD00829988 /* FlightMapCoordinatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38FCCCD248BD3CD00829988 /* FlightMapCoordinatesTests.swift */; };
 		A3D7ABF924813E7000BE96BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7ABF824813E7000BE96BB /* AppDelegate.swift */; };
 		A3D7ABFB24813E7000BE96BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7ABFA24813E7000BE96BB /* SceneDelegate.swift */; };
 		A3D7AC0224813E7300BE96BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3D7AC0124813E7300BE96BB /* Assets.xcassets */; };
@@ -58,12 +76,6 @@
 		A3D7AC7724825D8F00BE96BB /* FlightMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7AC7624825D8F00BE96BB /* FlightMap.swift */; };
 		A3D7AC7824825D8F00BE96BB /* FlightMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7AC7624825D8F00BE96BB /* FlightMap.swift */; };
 		A3D7AC7924825D8F00BE96BB /* FlightMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7AC7624825D8F00BE96BB /* FlightMap.swift */; };
-		A3D7AC7C24826C9B00BE96BB /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7AC7B24826C9B00BE96BB /* SwiftyJSON.swift */; };
-		A3D7AC7D24826C9B00BE96BB /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7AC7B24826C9B00BE96BB /* SwiftyJSON.swift */; };
-		A3D7AC7E24826C9B00BE96BB /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7AC7B24826C9B00BE96BB /* SwiftyJSON.swift */; };
-		A3D7AC8024826CEE00BE96BB /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7AC7F24826CEE00BE96BB /* Promise.swift */; };
-		A3D7AC8124826CEE00BE96BB /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7AC7F24826CEE00BE96BB /* Promise.swift */; };
-		A3D7AC8224826CEE00BE96BB /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7AC7F24826CEE00BE96BB /* Promise.swift */; };
 		A3D7AC8424826D0E00BE96BB /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7AC8324826D0E00BE96BB /* Network.swift */; };
 		A3D7AC8524826D0E00BE96BB /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7AC8324826D0E00BE96BB /* Network.swift */; };
 		A3D7AC8624826D0E00BE96BB /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7AC8324826D0E00BE96BB /* Network.swift */; };
@@ -88,6 +100,12 @@
 		A3D7ACA42482F9AA00BE96BB /* FilterVCPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7ACA32482F9AA00BE96BB /* FilterVCPresenter.swift */; };
 		A3D7ACA52482F9AA00BE96BB /* FilterVCPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7ACA32482F9AA00BE96BB /* FilterVCPresenter.swift */; };
 		A3D7ACA62482F9AA00BE96BB /* FilterVCPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7ACA32482F9AA00BE96BB /* FilterVCPresenter.swift */; };
+		A3D7ACA82483C09700BE96BB /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7ACA72483C09700BE96BB /* InfoView.swift */; };
+		A3D7ACA92483C09700BE96BB /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7ACA72483C09700BE96BB /* InfoView.swift */; };
+		A3D7ACAA2483C09700BE96BB /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7ACA72483C09700BE96BB /* InfoView.swift */; };
+		A3D7ACAC2483C58700BE96BB /* FakeData.json in Resources */ = {isa = PBXBuildFile; fileRef = A3D7ACAB2483C58600BE96BB /* FakeData.json */; };
+		A3D7ACAD2483C58700BE96BB /* FakeData.json in Resources */ = {isa = PBXBuildFile; fileRef = A3D7ACAB2483C58600BE96BB /* FakeData.json */; };
+		A3D7ACAE2483C58700BE96BB /* FakeData.json in Resources */ = {isa = PBXBuildFile; fileRef = A3D7ACAB2483C58600BE96BB /* FakeData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +126,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16784FAB5013EA0673ED2BBB /* Pods_FlightRadarTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlightRadarTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BF882EBE12426F6083AFCF3 /* Pods-FlightRadar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightRadar.debug.xcconfig"; path = "Target Support Files/Pods-FlightRadar/Pods-FlightRadar.debug.xcconfig"; sourceTree = "<group>"; };
+		1C97444A77CAFBA573130FC2 /* Pods_FlightRadar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlightRadar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AAB963CBC5ABF6D2C997B06 /* Pods-FlightRadar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightRadar.release.xcconfig"; path = "Target Support Files/Pods-FlightRadar/Pods-FlightRadar.release.xcconfig"; sourceTree = "<group>"; };
+		A3418DFD248B00B300406B8A /* UINib+loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINib+loading.swift"; sourceTree = "<group>"; };
+		A3418E02248B06B600406B8A /* FlightCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightCallView.swift; sourceTree = "<group>"; };
+		A38FCCC1248B2A5A00829988 /* FlightMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMapController.swift; sourceTree = "<group>"; };
+		A38FCCC5248B2B6F00829988 /* FlightMapCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMapCoordinates.swift; sourceTree = "<group>"; };
+		A38FCCC9248BBFDB00829988 /* FlightCreationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightCreationTests.swift; sourceTree = "<group>"; };
+		A38FCCCB248BC11600829988 /* FlightMapControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMapControllerTests.swift; sourceTree = "<group>"; };
+		A38FCCCD248BD3CD00829988 /* FlightMapCoordinatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMapCoordinatesTests.swift; sourceTree = "<group>"; };
 		A3D7ABF524813E7000BE96BB /* FlightRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlightRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D7ABF824813E7000BE96BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3D7ABFA24813E7000BE96BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,8 +164,6 @@
 		A3D7AC6924818CB000BE96BB /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		A3D7AC7224825CE600BE96BB /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		A3D7AC7624825D8F00BE96BB /* FlightMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMap.swift; sourceTree = "<group>"; };
-		A3D7AC7B24826C9B00BE96BB /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		A3D7AC7F24826CEE00BE96BB /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		A3D7AC8324826D0E00BE96BB /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		A3D7AC872482738200BE96BB /* FlightNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightNetwork.swift; sourceTree = "<group>"; };
 		A3D7AC8B24827FC300BE96BB /* Flight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flight.swift; sourceTree = "<group>"; };
@@ -145,6 +172,13 @@
 		A3D7AC9724829D6200BE96BB /* FlightAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightAnnotation.swift; sourceTree = "<group>"; };
 		A3D7AC9B2482A15E00BE96BB /* FlightAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightAnnotationView.swift; sourceTree = "<group>"; };
 		A3D7ACA32482F9AA00BE96BB /* FilterVCPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVCPresenter.swift; sourceTree = "<group>"; };
+		A3D7ACA72483C09700BE96BB /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		A3D7ACAB2483C58600BE96BB /* FakeData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FakeData.json; sourceTree = "<group>"; };
+		A4D2704D53915FDEFA2CE52D /* Pods-FlightRadarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightRadarTests.release.xcconfig"; path = "Target Support Files/Pods-FlightRadarTests/Pods-FlightRadarTests.release.xcconfig"; sourceTree = "<group>"; };
+		A4F56879F96A5E50CC880CF2 /* Pods-FlightRadar-FlightRadarUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightRadar-FlightRadarUITests.release.xcconfig"; path = "Target Support Files/Pods-FlightRadar-FlightRadarUITests/Pods-FlightRadar-FlightRadarUITests.release.xcconfig"; sourceTree = "<group>"; };
+		CB3143C9165BA124493C91CD /* Pods-FlightRadarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightRadarTests.debug.xcconfig"; path = "Target Support Files/Pods-FlightRadarTests/Pods-FlightRadarTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CCED08FE80383FB05484DEE5 /* Pods-FlightRadar-FlightRadarUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightRadar-FlightRadarUITests.debug.xcconfig"; path = "Target Support Files/Pods-FlightRadar-FlightRadarUITests/Pods-FlightRadar-FlightRadarUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D679B30BDCA258B5CD132206 /* Pods_FlightRadar_FlightRadarUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlightRadar_FlightRadarUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CF52A93BA92837AA9918A96 /* Pods_FlightRadar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06D8EA40E585B7F40159D4E6 /* Pods_FlightRadarTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,12 +202,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95027D5FA0BB9CC87917A73A /* Pods_FlightRadar_FlightRadarUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2FC60187BA0B6F10174DC65A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1BF882EBE12426F6083AFCF3 /* Pods-FlightRadar.debug.xcconfig */,
+				5AAB963CBC5ABF6D2C997B06 /* Pods-FlightRadar.release.xcconfig */,
+				CCED08FE80383FB05484DEE5 /* Pods-FlightRadar-FlightRadarUITests.debug.xcconfig */,
+				A4F56879F96A5E50CC880CF2 /* Pods-FlightRadar-FlightRadarUITests.release.xcconfig */,
+				CB3143C9165BA124493C91CD /* Pods-FlightRadarTests.debug.xcconfig */,
+				A4D2704D53915FDEFA2CE52D /* Pods-FlightRadarTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A3418E01248B069900406B8A /* FlightMap */ = {
+			isa = PBXGroup;
+			children = (
+				A3418E02248B06B600406B8A /* FlightCallView.swift */,
+				A3D7AC7624825D8F00BE96BB /* FlightMap.swift */,
+				A3D7AC9B2482A15E00BE96BB /* FlightAnnotationView.swift */,
+				A38FCCC1248B2A5A00829988 /* FlightMapController.swift */,
+				A38FCCC5248B2B6F00829988 /* FlightMapCoordinates.swift */,
+			);
+			path = FlightMap;
+			sourceTree = "<group>";
+		};
 		A3D7ABEC24813E7000BE96BB = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +241,8 @@
 				A3D7AC0E24813E7400BE96BB /* FlightRadarTests */,
 				A3D7AC1924813E7400BE96BB /* FlightRadarUITests */,
 				A3D7ABF624813E7000BE96BB /* Products */,
+				2FC60187BA0B6F10174DC65A /* Pods */,
+				E78CF10AB71F90B440481CAF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -216,6 +280,10 @@
 			children = (
 				A3D7AC0F24813E7400BE96BB /* FlightRadarTests.swift */,
 				A3D7AC1124813E7400BE96BB /* Info.plist */,
+				A3D7ACAB2483C58600BE96BB /* FakeData.json */,
+				A38FCCC9248BBFDB00829988 /* FlightCreationTests.swift */,
+				A38FCCCB248BC11600829988 /* FlightMapControllerTests.swift */,
+				A38FCCCD248BD3CD00829988 /* FlightMapCoordinatesTests.swift */,
 			);
 			path = FlightRadarTests;
 			sourceTree = "<group>";
@@ -250,9 +318,9 @@
 		A3D7AC2E2481460C00BE96BB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A3418E01248B069900406B8A /* FlightMap */,
 				A3D7AC3D248153E100BE96BB /* Table.swift */,
-				A3D7AC7624825D8F00BE96BB /* FlightMap.swift */,
-				A3D7AC9B2482A15E00BE96BB /* FlightAnnotationView.swift */,
+				A3D7ACA72483C09700BE96BB /* InfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -262,6 +330,7 @@
 			children = (
 				A3D7AC302481462200BE96BB /* UIView+Constraints.swift */,
 				A3D7AC932482881C00BE96BB /* UIViewController+AlertView.swift */,
+				A3418DFD248B00B300406B8A /* UINib+loading.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -320,11 +389,19 @@
 		A3D7AC7A24826C8A00BE96BB /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				A3D7AC7F24826CEE00BE96BB /* Promise.swift */,
-				A3D7AC7B24826C9B00BE96BB /* SwiftyJSON.swift */,
 				A3D7AC8324826D0E00BE96BB /* Network.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E78CF10AB71F90B440481CAF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1C97444A77CAFBA573130FC2 /* Pods_FlightRadar.framework */,
+				D679B30BDCA258B5CD132206 /* Pods_FlightRadar_FlightRadarUITests.framework */,
+				16784FAB5013EA0673ED2BBB /* Pods_FlightRadarTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,9 +411,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3D7AC1F24813E7400BE96BB /* Build configuration list for PBXNativeTarget "FlightRadar" */;
 			buildPhases = (
+				1CBE4A3C73BE2D24818582DE /* [CP] Check Pods Manifest.lock */,
 				A3D7ABF124813E7000BE96BB /* Sources */,
 				A3D7ABF224813E7000BE96BB /* Frameworks */,
 				A3D7ABF324813E7000BE96BB /* Resources */,
+				29326227A542B55269BEB8E6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -351,9 +430,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3D7AC2224813E7400BE96BB /* Build configuration list for PBXNativeTarget "FlightRadarTests" */;
 			buildPhases = (
+				8F51FDB4391DBB31ADA78186 /* [CP] Check Pods Manifest.lock */,
 				A3D7AC0724813E7400BE96BB /* Sources */,
 				A3D7AC0824813E7400BE96BB /* Frameworks */,
 				A3D7AC0924813E7400BE96BB /* Resources */,
+				CAB02B5197DBD927DD456410 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -369,9 +450,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3D7AC2524813E7400BE96BB /* Build configuration list for PBXNativeTarget "FlightRadarUITests" */;
 			buildPhases = (
+				9CABF1558C0EF1F9241C0FAF /* [CP] Check Pods Manifest.lock */,
 				A3D7AC1224813E7400BE96BB /* Sources */,
 				A3D7AC1324813E7400BE96BB /* Frameworks */,
 				A3D7AC1424813E7400BE96BB /* Resources */,
+				914491537ACFB420A5460802 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -431,6 +514,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3D7ACAC2483C58700BE96BB /* FakeData.json in Resources */,
 				A3D7AC592481890700BE96BB /* Museo100-Regular.otf in Resources */,
 				A3D7AC622481890700BE96BB /* Museo300-Regular.otf in Resources */,
 				A3D7AC652481890700BE96BB /* Museo700-Regular.otf in Resources */,
@@ -446,6 +530,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3D7ACAD2483C58700BE96BB /* FakeData.json in Resources */,
 				A3D7AC662481890700BE96BB /* Museo700-Regular.otf in Resources */,
 				A3D7AC602481890700BE96BB /* Museo900-Regular.otf in Resources */,
 				A3D7AC5A2481890700BE96BB /* Museo100-Regular.otf in Resources */,
@@ -459,6 +544,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3D7ACAE2483C58700BE96BB /* FakeData.json in Resources */,
 				A3D7AC672481890700BE96BB /* Museo700-Regular.otf in Resources */,
 				A3D7AC612481890700BE96BB /* Museo900-Regular.otf in Resources */,
 				A3D7AC5B2481890700BE96BB /* Museo100-Regular.otf in Resources */,
@@ -470,6 +556,126 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1CBE4A3C73BE2D24818582DE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlightRadar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		29326227A542B55269BEB8E6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlightRadar/Pods-FlightRadar-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlightRadar/Pods-FlightRadar-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlightRadar/Pods-FlightRadar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F51FDB4391DBB31ADA78186 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlightRadarTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		914491537ACFB420A5460802 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlightRadar-FlightRadarUITests/Pods-FlightRadar-FlightRadarUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlightRadar-FlightRadarUITests/Pods-FlightRadar-FlightRadarUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlightRadar-FlightRadarUITests/Pods-FlightRadar-FlightRadarUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9CABF1558C0EF1F9241C0FAF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlightRadar-FlightRadarUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CAB02B5197DBD927DD456410 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlightRadarTests/Pods-FlightRadarTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlightRadarTests/Pods-FlightRadarTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlightRadarTests/Pods-FlightRadarTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A3D7ABF124813E7000BE96BB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -479,21 +685,24 @@
 				A3D7AC9824829D6200BE96BB /* FlightAnnotation.swift in Sources */,
 				A3D7AC7324825CE600BE96BB /* Filter.swift in Sources */,
 				A3D7AC942482881C00BE96BB /* UIViewController+AlertView.swift in Sources */,
+				A3418E03248B06B600406B8A /* FlightCallView.swift in Sources */,
 				A3D7AC7724825D8F00BE96BB /* FlightMap.swift in Sources */,
-				A3D7AC7C24826C9B00BE96BB /* SwiftyJSON.swift in Sources */,
 				A3D7ACA42482F9AA00BE96BB /* FilterVCPresenter.swift in Sources */,
 				A3D7AC50248159DB00BE96BB /* Country.swift in Sources */,
 				A3D7AC8C24827FC300BE96BB /* Flight.swift in Sources */,
 				A3D7AC482481574600BE96BB /* FilterCell.swift in Sources */,
 				A3D7AC3E248153E100BE96BB /* Table.swift in Sources */,
-				A3D7AC8024826CEE00BE96BB /* Promise.swift in Sources */,
+				A3D7ACA82483C09700BE96BB /* InfoView.swift in Sources */,
+				A38FCCC6248B2B6F00829988 /* FlightMapCoordinates.swift in Sources */,
 				A3D7ABF924813E7000BE96BB /* AppDelegate.swift in Sources */,
 				A3D7AC90248285F000BE96BB /* FlightVCPresenter.swift in Sources */,
 				A3D7AC6A24818CB000BE96BB /* Configuration.swift in Sources */,
+				A38FCCC2248B2A5A00829988 /* FlightMapController.swift in Sources */,
 				A3D7AC2B24813F4700BE96BB /* FlightsVC.swift in Sources */,
 				A3D7AC882482738200BE96BB /* FlightNetwork.swift in Sources */,
 				A3D7ABFB24813E7000BE96BB /* SceneDelegate.swift in Sources */,
 				A3D7AC9C2482A15E00BE96BB /* FlightAnnotationView.swift in Sources */,
+				A3418DFE248B00B300406B8A /* UINib+loading.swift in Sources */,
 				A3D7AC8424826D0E00BE96BB /* Network.swift in Sources */,
 				A3D7AC312481462200BE96BB /* UIView+Constraints.swift in Sources */,
 			);
@@ -505,24 +714,30 @@
 			files = (
 				A3D7AC8524826D0E00BE96BB /* Network.swift in Sources */,
 				A3D7AC952482881C00BE96BB /* UIViewController+AlertView.swift in Sources */,
+				A38FCCCA248BBFDB00829988 /* FlightCreationTests.swift in Sources */,
 				A3D7AC91248285F000BE96BB /* FlightVCPresenter.swift in Sources */,
 				A3D7AC492481574600BE96BB /* FilterCell.swift in Sources */,
 				A3D7AC3F248153E100BE96BB /* Table.swift in Sources */,
+				A3418E04248B06B600406B8A /* FlightCallView.swift in Sources */,
 				A3D7AC8D24827FC300BE96BB /* Flight.swift in Sources */,
 				A3D7AC9D2482A15E00BE96BB /* FlightAnnotationView.swift in Sources */,
 				A3D7AC7824825D8F00BE96BB /* FlightMap.swift in Sources */,
-				A3D7AC7D24826C9B00BE96BB /* SwiftyJSON.swift in Sources */,
 				A3D7AC3B2481531F00BE96BB /* FilterVC.swift in Sources */,
 				A3D7AC6B24818CB000BE96BB /* Configuration.swift in Sources */,
 				A3D7AC9924829D6200BE96BB /* FlightAnnotation.swift in Sources */,
+				A38FCCC3248B2A5A00829988 /* FlightMapController.swift in Sources */,
 				A3D7AC322481462200BE96BB /* UIView+Constraints.swift in Sources */,
+				A38FCCCC248BC11600829988 /* FlightMapControllerTests.swift in Sources */,
+				A3D7ACA92483C09700BE96BB /* InfoView.swift in Sources */,
 				A3D7AC892482738200BE96BB /* FlightNetwork.swift in Sources */,
 				A3D7AC51248159DB00BE96BB /* Country.swift in Sources */,
 				A3D7AC2C24813F4700BE96BB /* FlightsVC.swift in Sources */,
+				A38FCCCE248BD3CD00829988 /* FlightMapCoordinatesTests.swift in Sources */,
 				A3D7AC7424825CE600BE96BB /* Filter.swift in Sources */,
 				A3D7ACA52482F9AA00BE96BB /* FilterVCPresenter.swift in Sources */,
+				A38FCCC7248B2B6F00829988 /* FlightMapCoordinates.swift in Sources */,
+				A3418DFF248B00B300406B8A /* UINib+loading.swift in Sources */,
 				A3D7AC1024813E7400BE96BB /* FlightRadarTests.swift in Sources */,
-				A3D7AC8124826CEE00BE96BB /* Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,21 +750,24 @@
 				A3D7AC92248285F000BE96BB /* FlightVCPresenter.swift in Sources */,
 				A3D7AC4A2481574600BE96BB /* FilterCell.swift in Sources */,
 				A3D7AC40248153E100BE96BB /* Table.swift in Sources */,
+				A3418E05248B06B600406B8A /* FlightCallView.swift in Sources */,
 				A3D7AC8E24827FC300BE96BB /* Flight.swift in Sources */,
 				A3D7AC9E2482A15E00BE96BB /* FlightAnnotationView.swift in Sources */,
 				A3D7AC7924825D8F00BE96BB /* FlightMap.swift in Sources */,
-				A3D7AC7E24826C9B00BE96BB /* SwiftyJSON.swift in Sources */,
 				A3D7AC3C2481531F00BE96BB /* FilterVC.swift in Sources */,
 				A3D7AC6C24818CB000BE96BB /* Configuration.swift in Sources */,
 				A3D7AC9A24829D6200BE96BB /* FlightAnnotation.swift in Sources */,
+				A38FCCC4248B2A5A00829988 /* FlightMapController.swift in Sources */,
 				A3D7AC332481462200BE96BB /* UIView+Constraints.swift in Sources */,
+				A3D7ACAA2483C09700BE96BB /* InfoView.swift in Sources */,
 				A3D7AC8A2482738200BE96BB /* FlightNetwork.swift in Sources */,
 				A3D7AC52248159DB00BE96BB /* Country.swift in Sources */,
 				A3D7AC2D24813F4700BE96BB /* FlightsVC.swift in Sources */,
 				A3D7AC7524825CE600BE96BB /* Filter.swift in Sources */,
 				A3D7ACA62482F9AA00BE96BB /* FilterVCPresenter.swift in Sources */,
+				A38FCCC8248B2B6F00829988 /* FlightMapCoordinates.swift in Sources */,
+				A3418E00248B00B300406B8A /* UINib+loading.swift in Sources */,
 				A3D7AC1B24813E7400BE96BB /* FlightRadarUITests.swift in Sources */,
-				A3D7AC8224826CEE00BE96BB /* Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,6 +914,7 @@
 		};
 		A3D7AC2024813E7400BE96BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1BF882EBE12426F6083AFCF3 /* Pods-FlightRadar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -715,6 +934,7 @@
 		};
 		A3D7AC2124813E7400BE96BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AAB963CBC5ABF6D2C997B06 /* Pods-FlightRadar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -734,6 +954,7 @@
 		};
 		A3D7AC2324813E7400BE96BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB3143C9165BA124493C91CD /* Pods-FlightRadarTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -756,6 +977,7 @@
 		};
 		A3D7AC2424813E7400BE96BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4D2704D53915FDEFA2CE52D /* Pods-FlightRadarTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -778,6 +1000,7 @@
 		};
 		A3D7AC2624813E7400BE96BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CCED08FE80383FB05484DEE5 /* Pods-FlightRadar-FlightRadarUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -798,6 +1021,7 @@
 		};
 		A3D7AC2724813E7400BE96BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4F56879F96A5E50CC880CF2 /* Pods-FlightRadar-FlightRadarUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

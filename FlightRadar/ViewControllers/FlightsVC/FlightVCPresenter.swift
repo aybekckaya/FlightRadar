@@ -8,7 +8,11 @@
 
 import UIKit
 import MapKit
+import RxSwift
+import RxCocoa
+import SwiftyJSON
 
+//MARK: Flight VC Presenter Delegate 
 protocol FlightVCPresenterDelegate {
     func flightVCPresenterShouldShowErrorAlert(presenter:FlightVCPresenter , error:NSError)
     func flightVCPresenterShouldReloadItems(presenter:FlightVCPresenter , items:[Flight])
@@ -17,6 +21,7 @@ protocol FlightVCPresenterDelegate {
 
 //MARK: FlightVC Presenter {Class}
 class FlightVCPresenter: NSObject {
+    fileprivate let bag = DisposeBag()
     fileprivate(set) var currentFlights:[Flight] = []
     fileprivate var delegate:FlightVCPresenterDelegate!
     fileprivate var timer:Timer?
@@ -37,11 +42,11 @@ extension FlightVCPresenter {
             strongSelf.request(latitudeMin: latitudeMin, latitudeMax: latitudeMax, longitudeMin: longitudeMin, longitudeMax: longitudeMax)
         })
         let request = NetworkRequest(route: FlightNetwork.states(latitudeMin: latitudeMin, latitudeMax: latitudeMax, longitudeMin: longitudeMin, longitudeMax: longitudeMax), parameters: nil)
-        Network.request(request: request).chained { response -> Promise<Bool> in
-            
+        
+        Network.request(request: request).flatMapLatest { response -> Observable<Bool> in
             if let error = response.error {
                 self.delegate.flightVCPresenterShouldShowErrorAlert(presenter: self, error: error)
-                return Promise<Bool>()
+                return Observable.of(true)
             }
             
             let flights = response.result["states"].compactMap { ( _ , json) -> Flight? in
@@ -54,9 +59,11 @@ extension FlightVCPresenter {
             self.currentFlights = flights
             self.delegate.flightVCPresenterShouldReloadItems(presenter: self, items: self.currentFlights)
             
-            print("Count Items : \(self.currentFlights.count)")
-            return Promise<Bool>()
-        }
+            return Observable.of(true)
+        }.subscribe(onNext: { _ in
+            
+        }).disposed(by: self.bag)
+    
     }
 }
 
@@ -65,7 +72,8 @@ extension FlightVCPresenter {
     func flightsToFlightAnnotations(flights:[Flight])->[FlightAnnotation] {
         return flights.compactMap { fl -> FlightAnnotation? in
             guard fl.shouldShowInMap == true else { return nil }
-            return FlightAnnotation(coordinate: CLLocationCoordinate2D(latitude: fl.latitude, longitude: fl.longitude) ,isOnTheGround: fl.isOnGround ,rotationDegree: fl.degree )
+            let state:FlightAnnotationState = fl.isOnGround == true ? .onTheGround : .flying
+            return FlightAnnotation(coordinate: CLLocationCoordinate2D(latitude: fl.latitude, longitude: fl.longitude), rotationDegree: fl.degree, icao24: fl.icao24, state: state)
         }
     }
     
@@ -79,5 +87,30 @@ extension FlightVCPresenter {
         return flightCountryNames.map { str -> Country in
             return Country(name: str)
         }
+    }
+}
+
+
+//MARK: Mock
+class FlightVCPresenterMockDelegate:FlightVCPresenterDelegate {
+    func flightVCPresenterShouldShowErrorAlert(presenter: FlightVCPresenter, error: NSError) {
+        
+    }
+    
+    func flightVCPresenterShouldReloadItems(presenter: FlightVCPresenter, items: [Flight]) {
+        
+    }
+    
+    
+}
+
+
+class FlightVCPresenterMock:FlightVCPresenter {
+    func flightsToFlightAnnotationsMock(flights:[Flight])->[FlightAnnotation] {
+        return super.flightsToFlightAnnotations(flights: flights)
+    }
+    
+    func countriesFromFlightsMock(flights:[Flight]) -> [Country] {
+        return super.countriesFromFlights(flights: flights)
     }
 }
